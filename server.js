@@ -9,7 +9,7 @@ app.get("/", function(req, res){
 })
 
 app.get("/resume", function(req, res){
-    let i = __dirname+"frontend/resume.html"
+    let i ="frontend/resume.html"
     res.send(i)
 })
  
