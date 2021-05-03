@@ -8,14 +8,13 @@ body {
 }
 ul {
   list-style: none;
-  display: inline-block;
 }
 header {
   width: 100%;
 }
 .nav-bar .sign-in {
   background: #4887ef;
-  margin-right: 25px;
+  margin-right: 20px;
   padding: 7px 15px;
   border-radius: 3px;
   font-weight: bold;
@@ -23,6 +22,9 @@ header {
 }
 .links {
   color: #404040;
+  float: right;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .images {
   text-align: center;
@@ -39,13 +41,14 @@ header {
 
 .buttons {
   text-align: center;
+  margin-top: 10px;
   padding-top: 0px;
   margin-bottom: 300px;
+  margin-left: 10px;
 }
 footer {
   background: #f2f2f2;
   border-top: solid 2px #e4e4e4;
-  /*   position: fixed; */
   bottom: 0;
   padding-bottom: 0;
   width: 100%;
@@ -69,4 +72,13 @@ footer ul a:hover {
 
 .footer-right {
   float: right;
+}
+#form-search {
+  width: 500px;
+  line-height: 32px;
+  padding: 20px 10px;
+}
+
+.form #form-search {
+  padding: 0 8px;
 }
