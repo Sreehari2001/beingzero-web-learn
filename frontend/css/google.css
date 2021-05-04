@@ -82,3 +82,11 @@ footer ul a:hover {
 .form #form-search {
   padding: 0 8px;
 }
+
+.sign_in:hover {
+  box-shadow: 1px 1px 5px #999;
+}
+
+.sign_in {
+  color: #fff;
+}
