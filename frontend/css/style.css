@@ -1,6 +1,26 @@
-body {
-  background: rgb(233, 233, 233);
+#id1 {
+  color: white;
+  text-align: center;
+  width: 300px;
+  border: 15px;
+  padding: 50px;
+  margin: 20px;
+  margin-top: 55px;
+  margin-left: 550px;
+  background: rgb(128, 128, 128);
 }
-h1 {
-  color: red;
+#id2 {
+  display: flex;
+  padding-top: 40px;
+  padding-left: 500px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+body {
+  background: cyan;
+}
+header {
+  text-align: center;
+  color: black;
+  padding: 20px;
 }
