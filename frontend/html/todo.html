@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="todo" id="todo">
+        <button id="btn" onclick="add()">
+            Add
+        </button>
+    </div>
+    <div id = "show"></div>
+    <script >
+        var a = []
+        function disp() {
+            document.getElementById("show").innerHTML=""
+            for (let index = 0; index < a.length; index++) {
+                document.getElementById("show").innerHTML += "<div id='box'>"+a[index]+ "<div id='btns'><span><button class='btn' onclick='done("+index+")'>Done</button></span>"+" "+"<span><button class='btn' onclick='del("+index+")'>Delete</button></span></div> </div>"
+                
+            }
+        }
+        function add() {
+            a.push(document.getElementById("todo").value)
+            localStorage.setItem("key", JSON.stringify(a))
+            console.log(localStorage);
+            disp()
+        }
+        window.onload = function() {
+            if(JSON.parse(localStorage.getItem("key"))!= null){
+                a=JSON.parse(localStorage.getItem('key'))
+                disp()
+            }
+        }
+        function del(i) {
+            a.splice(i,1);
+            localStorage.setItem("key", JSON.stringify(a))
+            disp()
+        }
+        function done(i) {
+            a[i] = "<s>" + a[i] + "</s>"
+            localStorage.setItem("key", JSON.stringify(a));
+            disp()
+        }
+    </script>
+</body>
+</html>
