@@ -1,4 +1,7 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const todo = require('./schema')
+
  
 const app = express();
 
@@ -8,6 +11,15 @@ var a = [
 ];
 
 app.use(express.static(__dirname+"/frontend"));
+
+var password = process.env.Mongo_password;
+var connectionString = 'mongodb+srv://sreehari2341:'+password+'@cluster0.ahabi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+
+
+mongoose.connect(connectionString, {});
+mongoose.connection.on('connected', function () {
+    console.log("Database Connected");
+});
 
 
  
@@ -64,26 +76,27 @@ var a={
    };
 
 app.get('/api/todo', function(req, res){
-    res.json(a);
+    todo.find()
+    .then((result) =>{
+        res.send(result);
+        console.log(result);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 })
 
 app.post('/api/todo', function(req, res){
     var newUser= req.body;
-    // console.log(newUser.task)
-    a.task.push(newUser.task)
-    // console.log(a)
-    res.json(a)
+    const newTask = new todo({
+        name : newUser.task,
+    })
+    newTask.save();
  })
 
  app.delete('/api/todo/:id', function(req, res){
     var i=req.params.id
-    if(i==-1){
-        for(var j=0;j<a.task.length;++j){
-            a.task.splice(j,1)
-            console.log(a.task[j])
-        }
-    }
-    a.task.splice(i,1)
+    todo.findByIdAndDelete
 })
 
 app.put('/api/todo/:id', function(req, res){
