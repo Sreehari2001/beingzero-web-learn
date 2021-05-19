@@ -54,6 +54,10 @@ app.get("/todo", function(req, res){
 app.get("/todocrud", function(req, res){
     res.sendFile('frontend/html/todocrud.html', {root:__dirname});
 })
+
+app.get("/crud", function(req, res){
+    res.sendFile('frontend/html/crud-operations.html', {root:__dirname});
+})
  
 // Heroku will automatically set an environment variable called PORT
 const PORT = process.env.PORT || 3000;
