@@ -1,19 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const todo = require('./schema')
+const table = require('./table')
 
  
 const app = express();
 
-var a = [
-    {data : 'one'},
-    {data : 'two'}
-];
 
 app.use(express.static(__dirname+"/frontend"));
 
 var password = process.env.Mongo_password;
-var connectionString = 'mongodb+srv://sreehari2341:'+password+'@cluster0.ahabi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+var connectionString = 'mongodb+srv://sreehari2341:harshitha123@cluster0.ahabi.mongodb.net/crud?retryWrites=true&w=majority'
 
 
 mongoose.connect(connectionString, {});
@@ -102,4 +98,54 @@ app.post('/api/todo', function(req, res){
 app.put('/api/todo/:id', function(req, res){
     var i=req.params.id
     a.task[i]="<s>"+a.task[i]+"</s>" 
+})
+
+
+// table
+
+app.get('/crud/get', function(req, res){
+    table.find()
+    .then((result) =>{
+        res.send(result);
+        console.log(result);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+})
+
+app.post('/crud/post', function(req, res){
+    var newUser= req.body;
+    const newTable = new table({
+        name : newUser.name,
+        Articels : newUser.Articels
+    })
+    console.log(newTable);
+    newTable.save();
+ })
+
+ app.delete('/crud/del/:id', function(req, res){
+    var i=req.params.id
+    table.findByIdAndDelete(i, (err)=>{
+        if(err){
+            console.log('Error:'+err);
+        }
+        else{
+            console.log('Success');
+        }
+    })
+})
+
+app.put('/crud/put/:id', function(req, res){
+    var i=req.params.id
+    table.findById(i, function (err,Obj) {
+        if(err){
+            console.log('Error:' + err);
+        }
+        else{
+            table.findByIdAndUpdate(i, {Articels: value}, function(){})
+        };
+    });
+
+    
 })
