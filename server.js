@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const table = require('./table')
+const config = require('./config')
+const connect = require('./dbConnectlib')
 
  
 const app = express();
@@ -8,16 +10,8 @@ const app = express();
 
 app.use(express.static(__dirname+"/frontend"));
 
-var password = process.env.Mongo_password;
-var connectionString = 'mongodb+srv://sreehari2341:harshitha123@cluster0.ahabi.mongodb.net/crud?retryWrites=true&w=majority'
 
-
-mongoose.connect(connectionString, {});
-mongoose.connection.on('connected', function () {
-    console.log("Database Connected");
-});
-
-
+connect.connect();
  
 app.get("/", function(req, res){
     res.send("Welcome to My Basic Site");
@@ -63,8 +57,8 @@ app.get("/crud", function(req, res){
 const PORT = process.env.PORT || 3000;
  
 // Start the server
-app.listen(PORT, function(){
-    console.log("Server Starting running on http://localhost:"+PORT);
+app.listen(config.webPort, function(){
+    console.log("Server Starting running on http://localhost:"+config.webPort);
 })
 
 
