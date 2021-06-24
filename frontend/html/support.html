@@ -66,11 +66,13 @@
 			//console.log(name, phone, email, message);
 
 			Email.send({
-        SecureToken:"80a4517f-d451-4d63-88a5-51768a69e251",
-				To: 'sreehari2341@gmail.com',
-				From: email,
-				Subject: "New message on contact from "+name,
-				Body: Body
+                Host : "smtp.gmail.com",
+                Username : "sreehari2341@gmail.com",
+                Password : "sr33h@r1@123",
+                To : 'sameeha1100@gmail.com',
+                From : "sreehari2341@gmail.com",
+                Subject : "This is the subject" +name,
+                Body : Body
 			}).then(
 				message =>{
 					//console.log (message);
