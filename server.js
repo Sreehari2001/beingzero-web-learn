@@ -23,6 +23,10 @@ app.get("/resume", function(req, res){
     res.sendFile('frontend/html/resume.html', {root:__dirname});
 })
 
+app.get("/support", function(req, res){
+    res.sendFile('frontend/html/support.html', {root:__dirname});
+})
+
 app.get("/logs", function(req, res){
     res.sendFile('frontend/html/log.html', {root:__dirname});
 })
