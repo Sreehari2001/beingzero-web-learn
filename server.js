@@ -7,8 +7,9 @@ const connect = require('./dbConnectlib')
  
 const app = express();
 
-
+app.use('/css', express.static('css'));
 app.use(express.static(__dirname+"/frontend"));
+app.set('view engine', 'ejs');
 
 
 connect.connect();
@@ -22,8 +23,16 @@ app.get("/resume", function(req, res){
     res.sendFile('frontend/html/resume.html', {root:__dirname});
 })
 
+app.get("/logs", function(req, res){
+    res.sendFile('frontend/html/log.html', {root:__dirname});
+})
+
 app.get("/google", function(req, res){
     res.sendFile('frontend/html/google.html', {root:__dirname});
+})
+
+app.get("/log", function(req, res){
+    res.render('log');
 })
 
 app.get("/todo-crud", function(req, res){
@@ -55,6 +64,14 @@ app.get("/crud", function(req, res){
 
 app.get("/tambola", function(req, res){
     res.sendFile('frontend/html/tambola.html', {root:__dirname});
+})
+
+app.get("/register", function(req, res){
+    res.sendFile('frontend/html/register.html', {root:__dirname});
+})
+
+app.get("/login", function(req, res){
+    res.sendFile('frontend/html/login.html', {root:__dirname});
 })
  
 // Heroku will automatically set an environment variable called PORT
@@ -124,6 +141,11 @@ app.post('/crud/post', function(req, res){
     })
     console.log(newTable);
     newTable.save();
+ })
+
+ app.post('/register', (req, res) => {
+     var newUser = req.body;
+
  })
 
  app.delete('/crud/del/:id', function(req, res){
